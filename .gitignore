@@ -1,0 +1,6 @@
+# .gitignore
+Abhishek/
+.env
+node_modules/
+.git/
+.vscode/
