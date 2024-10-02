@@ -4,11 +4,13 @@ import { IUserRepository } from "../interfaces/IUserRepository";
 import { IUserModel } from "../models/UserModel";
 import bcrypt from "bcrypt";
 import { JwtService } from "../services/jwtService";
+import { ExternalService } from "../services/externalService";
 
 @injectable()
 export class UserUseCase implements IUserUseCase {
     constructor(
-        @inject("IUserRepository") private userRepository: IUserRepository
+        @inject("IUserRepository") private userRepository: IUserRepository,
+        @inject("ExternalService") private externalService: ExternalService
     ) {}
 
     async register(userData: Partial<IUserModel>): Promise<IUserModel> {
