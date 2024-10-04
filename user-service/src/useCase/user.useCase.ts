@@ -1,3 +1,4 @@
+// user-service/src/useCase/user.useCase.ts
 import { injectable, inject } from "inversify";
 import { IUserUseCase } from "../interfaces/IUserUseCase";
 import { IUserRepository } from "../interfaces/IUserRepository";
@@ -16,8 +17,18 @@ export class UserUseCase implements IUserUseCase {
     async register(userData: Partial<IUserModel>): Promise<IUserModel> {
         const salt = await bcrypt.genSalt(10);
         userData.password = await bcrypt.hash(userData.password as string, salt);
-        return this.userRepository.createUser(userData);
+    
+        const user = await this.userRepository.createUser(userData);
+        // Use externalService to send Kafka message
+        await this.externalService.sendMessage('user-registration', {
+             userId: user.id,
+             email: user.email,
+             name : user.name
+            });
+    
+        return user;
     }
+    
 
     async login(email: string, password: string): Promise<string> {
         const user = await this.userRepository.findUserByEmail(email);

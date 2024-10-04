@@ -4,3 +4,7 @@ Abhishek/
 node_modules/
 .git/
 .vscode/
+Kafka/
+Docs/
+dist/
+build/
