@@ -5,6 +5,9 @@ export interface IProductModel extends Document {
     price: number;
     description: string;
     quantity: number;
+    averageRating: number; 
+    reviewCount: number; 
+    isActive: boolean;
 }
 
 const ProductSchema: Schema = new Schema({
@@ -12,6 +15,9 @@ const ProductSchema: Schema = new Schema({
     price: { type: Number, required: true },
     description: { type: String, required: true },
     quantity: { type: Number, required: true, default: 0 },
+    averageRating: { type: Number, default: 0 },
+    reviewCount: { type: Number, default: 0 }, 
+    isActive: { type: Boolean, default: true },
 });
 
 export default mongoose.model<IProductModel>("Product", ProductSchema);

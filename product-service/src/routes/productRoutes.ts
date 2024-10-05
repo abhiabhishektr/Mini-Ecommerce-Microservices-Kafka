@@ -7,5 +7,7 @@ const productController = container.get(ProductController);
 
 router.post('/products', productController.create.bind(productController));
 router.put('/products/:productId', productController.update.bind(productController));
+router.get('/products/:productId', productController.getProductById.bind(productController));
+router.get('/products', productController.getAllProducts.bind(productController));
 
 export default router;

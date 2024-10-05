@@ -11,11 +11,11 @@ async function startService() {
     app.use(express.json()); // Middleware to parse JSON body
 
     // Connect to MongoDB
-    await mongoose.connect('mongodb://localhost:27017/testInversify');
+    await mongoose.connect('mongodb://localhost:27017/Product-Service');
     console.log('Connected to MongoDB.');
 
     // Set up routes
-    app.use('/api', productRoutes);
+    app.use('/api/product', productRoutes);
 
     // Start server
     app.listen(env.PORT, () => {
@@ -32,3 +32,4 @@ async function startService() {
 }
 
 startService();
+ 

@@ -39,4 +39,11 @@ export class UserUseCase implements IUserUseCase {
 
         return JwtService.generateToken(user.id);
     }
+
+    
+async submitReview(reviewData: { userId: string; productId: string; rating: number; comment: string }): Promise<any> {
+    await this.externalService.sendMessage('product-reviewed', reviewData);
+    return { message: "Review submitted successfully" }; 
+}
+
 }
