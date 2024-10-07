@@ -9,3 +9,5 @@ Docs/
 dist/
 build/
 test.ts
+test.yaml
+test.md
