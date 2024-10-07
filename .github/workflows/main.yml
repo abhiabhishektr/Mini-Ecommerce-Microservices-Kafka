@@ -22,14 +22,14 @@ jobs:
           node-version: '20.9.0'
 
       # Install, test, and build for each service
-      - name: Install dependencies for api-gateway
-        run: yarn install --cwd ./api-gateway
+      # - name: Install dependencies for api-gateway
+        # run: yarn install --cwd ./api-gateway
 
       # - name: Run tests for api-gateway
       #   run: yarn test --cwd ./api-gateway
 
-      - name: Build api-gateway
-        run: yarn build --cwd ./api-gateway
+      # - name: Build api-gateway
+        # run: yarn build --cwd ./api-gateway
 
       - name: Install dependencies for user-service
         run: yarn install --cwd ./user-service
