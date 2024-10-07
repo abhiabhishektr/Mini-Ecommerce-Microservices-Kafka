@@ -37,7 +37,7 @@ jobs:
     - name: Install dependencies and build product-service
       run: |
         cd product-service
-        yarn install --frozen-lockfile
+        yarn install --frozen-lockfile --production=false
         yarn build
 
     - name: Install dependencies and build cart-service
