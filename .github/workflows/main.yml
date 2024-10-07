@@ -13,95 +13,73 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20.9.0'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.9.0'
 
-      # Install, test, and build for each service
-      # - name: Install dependencies for api-gateway
-        # run: yarn install --cwd ./api-gateway
+    # Install, build for each service
+    - name: Install dependencies and build user-service
+      run: |
+        cd user-service
+        yarn install
+        yarn build
 
-      # - name: Run tests for api-gateway
-      #   run: yarn test --cwd ./api-gateway
+    - name: Install dependencies and build notification-service
+      run: |
+        cd notification-service
+        yarn install
+        yarn build
 
-      # - name: Build api-gateway
-        # run: yarn build --cwd ./api-gateway
+    - name: Install dependencies and build product-service
+      run: |
+        cd product-service
+        yarn install
+        yarn build
 
-      - name: Install dependencies for user-service
-        run: yarn install --cwd ./user-service
-
-      # - name: Run tests for user-service
-      #   run: yarn test --cwd ./user-service
-
-      - name: Build user-service
-        run: yarn build --cwd ./user-service
-
-      - name: Install dependencies for notification-service
-        run: yarn install --cwd ./notification-service
-
-      # - name: Run tests for notification-service
-      #   run: yarn test --cwd ./notification-service
-
-      - name: Build notification-service
-        run: yarn build --cwd ./notification-service
-
-      - name: Install dependencies for product-service
-        run: yarn install --cwd ./product-service
-
-      # - name: Run tests for product-service
-      #   run: yarn test --cwd ./product-service
-
-      - name: Build product-service
-        run: yarn build --cwd ./product-service
-
-      - name: Install dependencies for cart-service
-        run: yarn install --cwd ./cart-service
-
-      # - name: Run tests for cart-service
-      #   run: yarn test --cwd ./cart-service
-
-      - name: Build cart-service
-        run: yarn build --cwd ./cart-service
+    - name: Install dependencies and build cart-service
+      run: |
+        cd cart-service
+        yarn install
+        yarn build
 
   # docker:
   #   runs-on: ubuntu-latest
   #   needs: build
   #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  #   - name: Checkout code
+  #     uses: actions/checkout@v3
 
-  #     - name: Log in to Docker Hub
-  #       uses: docker/login-action@v2
-  #       with:
-  #         username: ${{ secrets.DOCKER_USERNAME }}
-  #         password: ${{ secrets.DOCKER_PASSWORD }}
+  #   - name: Log in to Docker Hub
+  #     uses: docker/login-action@v2
+  #     with:
+  #       username: ${{ secrets.DOCKER_USERNAME }}
+  #       password: ${{ secrets.DOCKER_PASSWORD }}
 
-  #     # Build and push Docker images for each service
-  #     - name: Build and push api-gateway
-  #       run: |
-  #         docker build -t your-dockerhub-username/api-gateway:latest ./api-gateway
-  #         docker push your-dockerhub-username/api-gateway:latest
+  #   # Build and push Docker images for each service
+  #   - name: Build and push user-service
+  #     run: |
+  #       docker build -t your-dockerhub-username/user-service:latest ./user-service
+  #       docker push your-dockerhub-username/user-service:latest
 
-  #     - name: Build and push user-service
-  #       run: |
-  #         docker build -t your-dockerhub-username/user-service:latest ./user-service
-  #         docker push your-dockerhub-username/user-service:latest
+  #   - name: Build and push notification-service
+  #     run: |
+  #       docker build -t your-dockerhub-username/notification-service:latest ./notification-service
+  #       docker push your-dockerhub-username/notification-service:latest
 
-  #     - name: Build and push notification-service
-  #       run: |
-  #         docker build -t your-dockerhub-username/notification-service:latest ./notification-service
-  #         docker push your-dockerhub-username/notification-service:latest
+  #   - name: Build and push product-service
+  #     run: |
+  #       docker build -t your-dockerhub-username/product-service:latest ./product-service
+  #       docker push your-dockerhub-username/product-service:latest
 
-  #     - name: Build and push product-service
-  #       run: |
-  #         docker build -t your-dockerhub-username/product-service:latest ./product-service
-  #         docker push your-dockerhub-username/product-service:latest
-
-  #     - name: Build and push cart-service
-  #       run: |
-  #         docker build -t your-dockerhub-username/cart-service:latest ./cart-service
-  #         docker push your-dockerhub-username/cart-service:latest
+  #   - name: Build and push cart-service
+  #     run: |
+  #       docker build -t your-dockerhub-username/cart-service:latest ./cart-service
+  #       docker push your-dockerhub-username/cart-service:latest
+  
+  #for testing purpose 
+  # - name: Run tests for cart-service
+      #   run: yarn test --cwd ./cart-service
