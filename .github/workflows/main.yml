@@ -19,13 +19,50 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.9.0'  
+          node-version: '20.9.0'
 
-      - name: Install dependencies
-        run: yarn install
+      # Install, test, and build for each service
+      - name: Install dependencies for api-gateway
+        run: yarn install --cwd ./api-gateway
 
-      - name: Run tests
-        run: yarn test
+      - name: Run tests for api-gateway
+        run: yarn test --cwd ./api-gateway
 
-      - name: Build the application # Optional step
-        run: yarn build
+      - name: Build api-gateway
+        run: yarn build --cwd ./api-gateway
+
+      - name: Install dependencies for user-service
+        run: yarn install --cwd ./user-service
+
+      - name: Run tests for user-service
+        run: yarn test --cwd ./user-service
+
+      - name: Build user-service
+        run: yarn build --cwd ./user-service
+
+      - name: Install dependencies for notification-service
+        run: yarn install --cwd ./notification-service
+
+      - name: Run tests for notification-service
+        run: yarn test --cwd ./notification-service
+
+      - name: Build notification-service
+        run: yarn build --cwd ./notification-service
+
+      - name: Install dependencies for product-service
+        run: yarn install --cwd ./product-service
+
+      - name: Run tests for product-service
+        run: yarn test --cwd ./product-service
+
+      - name: Build product-service
+        run: yarn build --cwd ./product-service
+
+      - name: Install dependencies for cart-service
+        run: yarn install --cwd ./cart-service
+
+      - name: Run tests for cart-service
+        run: yarn test --cwd ./cart-service
+
+      - name: Build cart-service
+        run: yarn build --cwd ./cart-service
