@@ -25,25 +25,25 @@ jobs:
     - name: Install dependencies and build user-service
       run: |
         cd user-service
-        yarn install
+        yarn install --frozen-lockfile
         yarn build
 
     - name: Install dependencies and build notification-service
       run: |
         cd notification-service
-        yarn install
+        yarn install --frozen-lockfile
         yarn build
 
     - name: Install dependencies and build product-service
       run: |
         cd product-service
-        yarn install
+        yarn install --frozen-lockfile
         yarn build
 
     - name: Install dependencies and build cart-service
       run: |
         cd cart-service
-        yarn install
+        yarn install --frozen-lockfile
         yarn build
 
   # docker:
@@ -79,7 +79,6 @@ jobs:
   #     run: |
   #       docker build -t your-dockerhub-username/cart-service:latest ./cart-service
   #       docker push your-dockerhub-username/cart-service:latest
-  
   #for testing purpose 
   # - name: Run tests for cart-service
       #   run: yarn test --cwd ./cart-service
