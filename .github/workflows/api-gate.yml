@@ -1,0 +1,39 @@
+name: API Gateway CI/CD Pipeline
+
+on:
+  push:
+    paths:
+      - 'api-gateway/**'
+  pull_request:
+    paths:
+      - 'api-gateway/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.9.0'
+
+    # Install dependencies and build API Gateway
+    - name: Install dependencies
+      run: |
+        cd api-gateway
+        yarn install --frozen-lockfile
+
+    - name: Build TypeScript
+      run: |
+        cd api-gateway
+        yarn build
+
+    # Run the API Gateway
+    - name: Start API Gateway in development mode
+      run: |
+        cd api-gateway
+        yarn dev
