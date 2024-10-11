@@ -58,24 +58,27 @@ export class NotificationService implements INotificationService {
             to: userDetails.email,
             subject: 'Welcome to Our Service!',
             html: `
-                <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
-                    <h2 style="color: #4CAF50;">Welcome, ${userDetails.name}!</h2>
-                    <p>Thank you for registering with us. We're excited to have you on board!</p>
-                    <p style="margin: 20px 0;">Here are a few things you can do:</p>
-                    <ul>
-                        <li>Explore our products and services.</li>
-                        <li>Get in touch with our support team for any assistance.</li>
-                        <li>Check out our latest updates and offers!</li>
-                    </ul>
-                    <p>Happy exploring!</p>
-                    <p>Best Regards,<br/>The Team</p>
-                    <footer style="margin-top: 20px; font-size: 12px; color: #aaa;">
-                        <p>This is a project built for practicing the power of microservices and their wide range of scalability options.</p>
-                        <p>Check the full project from <a href="https://github.com/abhiabhishektr/ecommerce-microservices">here</a>.</p>
-                        <p>Follow the developer on <a href="https://www.linkedin.com/in/abhiabhishektr/">LinkedIn</a>.</p>
-                        <p>GitHub: <a href="https://github.com/abhiabhishektr/">here</a>.</p>
-                    </footer>
-                </div>
+            <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+                <h2 style="color: #4CAF50;">Welcome, ${userDetails.name}!</h2>
+                <p>Thank you for registering with us. We're excited to have you on board!</p>
+                <p style="margin: 20px 0;">This is a demo mini e-commerce project built on microservices using complete asynchronous calls. Explore the code and get in touch with the developer if you have any queries. Here are the services included in this project:</p>
+                <ul>
+                    <li><strong>User Service:</strong> Manages user authentication and profile management.</li>
+                    <li><strong>Product Service:</strong> Handles product listings, details, and management.</li>
+                    <li><strong>Cart Service:</strong> Manages the shopping cart functionalities for users.</li>
+                    <li><strong>Notifications Service:</strong> Sends notifications to users regarding updates and promotions.</li>
+                    <li><strong>API Gateway:</strong> Acts as a single entry point for all client requests, routing them to the appropriate services.</li>
+                </ul>
+                <p>Happy exploring!</p>
+                <p>Best Regards,<br/>The Team</p>
+                <footer style="margin-top: 20px; font-size: 12px; color: #aaa;">
+                    <p>This is a project built for practicing the power of microservices and their wide range of scalability options.</p>
+                    <p>Check the full project from <a href="https://github.com/abhiabhishektr/ecommerce-microservices">here</a>.</p>
+                    <p>Follow the developer on <a href="https://www.linkedin.com/in/abhiabhishektr/">LinkedIn</a>.</p>
+                    <p>GitHub: <a href="https://github.com/abhiabhishektr/">here</a>.</p>
+                </footer>
+            </div>
+
             `,
         };
 
