@@ -45,7 +45,7 @@ jobs:
       with:
         context: ./user-service
         push: true
-        tags: your-dockerhub-username/user-service:latest
+        tags: abhishekabtr/user-service:latest
 
     - name: Deploy to production
       run: |

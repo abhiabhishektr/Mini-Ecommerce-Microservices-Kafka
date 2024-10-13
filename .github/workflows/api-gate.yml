@@ -45,7 +45,7 @@ jobs:
       with:
         context: ./api-gateway
         push: true
-        tags: your-dockerhub-username/api-gateway:latest
+        tags: abhishekabtr/api-gateway:latest
 
     - name: Deploy to production
       run: |

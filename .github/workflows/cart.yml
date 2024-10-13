@@ -41,7 +41,7 @@ jobs:
       with:
         context: ./cart-service
         push: true
-        tags: your-dockerhub-username/cart-service:latest
+        tags: abhishekabtr/cart-service:latest
 
     - name: Deploy to production
       run: |

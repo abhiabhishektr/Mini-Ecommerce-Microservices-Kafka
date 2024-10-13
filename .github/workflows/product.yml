@@ -45,7 +45,7 @@ jobs:
       with:
         context: ./product-service
         push: true
-        tags: your-dockerhub-username/product-service:latest
+        tags: abhishekabtr/product-service:latest
 
     - name: Deploy to production
       run: |

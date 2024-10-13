@@ -41,7 +41,7 @@ jobs:
       with:
         context: ./notification-service
         push: true
-        tags: your-dockerhub-username/notification-service:latest
+        tags: abhishekabtr/notification-service:latest
 
     - name: Deploy to production
       run: |
