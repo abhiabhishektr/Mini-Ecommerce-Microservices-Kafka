@@ -11,7 +11,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     console.log(`API Request: ${req.method} ${req.url}`);
     next();  
 });
-
+ 
 const authenticate = async (req: Request, res: Response, next: () => void) => {
     try {
         const token = req.headers['authorization'];

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 import { IProductService } from '../interfaces/IProductService';
 import { TYPES } from '../types';
-
+ 
 @injectable()
 export class ProductController {
     constructor(
