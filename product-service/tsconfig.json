@@ -7,6 +7,7 @@
       "strict": true,
       "useUnknownInCatchVariables": false,
       "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
       "esModuleInterop": true
     },
     "include": ["src/**/*"]

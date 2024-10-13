@@ -1,0 +1,80 @@
+version: '3'
+
+networks:
+  myNetwork:
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - myNetwork
+
+  kafka:
+    image: 'bitnami/kafka:latest'
+    user: root
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    volumes:
+      - ./Kafka:/bitnami/kafka
+    networks:
+      - myNetwork
+    depends_on:
+      - zookeeper
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "5000:5000"
+    networks:
+      - myNetwork
+    depends_on:
+      - user-service
+      - product-service
+      - cart-service
+      - notification-service
+
+  user-service:
+    build: ./user-service
+    ports:
+      - "3000:3000"
+    networks:
+      - myNetwork
+    depends_on:
+      - kafka
+
+  product-service:
+    build: ./product-service
+    ports:
+      - "3001:3001"
+    networks:
+      - myNetwork
+    depends_on:
+      - kafka
+
+  cart-service:
+    build:
+      context: ./cart-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    networks:
+      - myNetwork
+    depends_on:
+      - kafka
+
+  notification-service:
+    build: ./notification-service
+    networks:
+      - myNetwork
+    depends_on:
+      - kafka

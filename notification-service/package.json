@@ -5,7 +5,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
-    "@types/node": "^22.7.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.5",
     "@types/nodemailer": "^6.4.16",
     "@types/reflect-metadata": "^0.1.0",
     "nodemon": "^3.1.7",

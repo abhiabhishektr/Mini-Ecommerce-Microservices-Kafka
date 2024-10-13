@@ -2,12 +2,14 @@ FROM node:20.9.0-alpine
 
 WORKDIR /app/gateway/api-gateway
 
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
 RUN yarn install
 
-COPY . .
-    
-EXPOSE 4000
+RUN yarn global add typescript
 
-CMD ["yarn","start"]
+COPY . .
+
+EXPOSE 5000
+
+CMD ["yarn", "start"]

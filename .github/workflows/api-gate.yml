@@ -9,7 +9,7 @@ on:
       - 'api-gateway/**'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,6 @@ jobs:
       with:
         node-version: '20.9.0'
 
-    # Install dependencies and build API Gateway
     - name: Install dependencies
       run: |
         cd api-gateway
@@ -32,8 +31,24 @@ jobs:
         cd api-gateway
         yarn build
 
-    # Run the API Gateway
-    - name: Start API Gateway in development mode
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        context: ./api-gateway
+        push: true
+        tags: your-dockerhub-username/api-gateway:latest
+
+    - name: Deploy to production
       run: |
-        cd api-gateway
-        yarn dev
+        # Add your deployment steps here
+        # For example, you might use SSH to connect to your server and pull the new Docker image
+        # ssh user@your-server "docker pull your-dockerhub-username/api-gateway:latest && docker-compose up -d"
