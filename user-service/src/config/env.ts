@@ -9,4 +9,4 @@ export const env = {
     EXTERNAL_API_URL: process.env.EXTERNAL_API_URL,
     KAFKA_BROKER_URL: process.env.KAFKA_BROKER_URL||"localhost:9092",
     SERVICE: process.env.SERVICE || "user-service",
-};
+}; 
